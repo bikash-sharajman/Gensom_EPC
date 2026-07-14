@@ -1,0 +1,4 @@
+.venv
+testing
+.agents
+.pytest_cache
