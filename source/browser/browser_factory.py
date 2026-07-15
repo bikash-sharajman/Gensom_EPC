@@ -8,7 +8,7 @@ class BrowserFactory:
     def __init__(self):
         self.playwright = sync_playwright().start()
 
-    def launch_browser(self, browser_name):
+    def launch_browser(self, browser_name, headless_mode):
         # browser_name = cr.get_browser()
 
         browser_map = {
@@ -22,7 +22,7 @@ class BrowserFactory:
                 f"Unsupported Browser : {browser_name}")
 
         browser = browser_map[browser_name].launch(
-            headless=cr.get_headless(),
+            headless=headless_mode,
             slow_mo=cr.get_slow_mo())
 
         context = browser.new_context()
