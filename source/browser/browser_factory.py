@@ -25,7 +25,7 @@ class BrowserFactory:
             headless=headless_mode,
             slow_mo=cr.get_slow_mo())
 
-        context = browser.new_context()
+        context = browser.new_context(ignore_https_errors=True)
         page = context.new_page()
         return browser, context, page
 

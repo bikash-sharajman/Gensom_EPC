@@ -1,22 +1,29 @@
-import re
-from playwright.sync_api import Playwright, sync_playwright, expect
+from playwright.sync_api import Page
 
 
-def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
-    page.goto("https://epc.demo.gensomsolar.com/login")
-    page.get_by_role("textbox", name="Email Address Password").click()
-    page.get_by_role("textbox", name="Email Address Password").fill("ashish.k@sharajman.com")
-    page.get_by_role("textbox", name="Password", exact=True).click()
-    page.get_by_role("textbox", name="Password", exact=True).fill("Gensom@1234")
-    page.get_by_role("button", name="Login").click()
 
-    # ---------------------
-    context.close()
-    browser.close()
-
-
-with sync_playwright() as playwright:
-    run(playwright)
+class EPC_Login():
+    
+    def __init__(self, page:Page):
+        self.page = page
+        
+        
+    def enter_email(self, email):
+        self.page.get_by_role("textbox", name="Email Address Password")\
+            .fill(email)
+            
+    def enter_password(self, password):
+        self.page.get_by_role("textbox", name="Password", exact=True)\
+            .type(password)
+            
+    def click_on_loginbutton(self):
+        self.page.get_by_role("button", name="Login").click()
+        self.page.wait_for_url("**/project-overview-dash")
+        
+        
+    def login(self, email, password):
+        self.enter_email(email)
+        self.enter_password(password)
+        self.click_on_loginbutton()
+        
+    
