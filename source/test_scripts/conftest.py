@@ -3,6 +3,8 @@ from playwright.sync_api import Page
 from source.browser.browser_factory import BrowserFactory
 from source.pages.project_initialization_page import Project_Initialization_Page
 from source.pages.login_page import EPC_Login
+from source.pages.survey_page import EPC_Survey_Page
+from source.pages.base_page import BasePage
 from source.config.config_reader import cr
 
 
@@ -11,6 +13,8 @@ class PageObjects:
         self.page = page
         self.project_init = Project_Initialization_Page(page)
         self.epc_login = EPC_Login(page)
+        self.survey = EPC_Survey_Page(page)
+        self.base_page = BasePage()
               
         
         

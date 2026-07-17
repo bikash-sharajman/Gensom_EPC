@@ -50,7 +50,6 @@ class Project_Initialization_Page:
         self.page.locator("(//i-feather[@class='icon-people'])[1]").hover()
         # self.page.locator("a").filter(has_text="Sales Handover").click()
         self.page.locator("//*[@id='sidebarnav']/li[2]/a/span").click()
-        
         self.page.get_by_role("link", name=" Project Initialization").click()
         self.page.wait_for_url("**/project-initialization")
         
