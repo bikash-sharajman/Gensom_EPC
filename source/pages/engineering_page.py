@@ -26,6 +26,7 @@ class Engineering_design_Page:
         
         
     def upload_plant_layout_document(self):
+        
         self.page.locator("//p-autocomplete[@formcontrolname='documentType']//input").type("Plant Layout")
         
     
