@@ -5,6 +5,7 @@ from source.pages.project_initialization_page import Project_Initialization_Page
 from source.pages.login_page import EPC_Login
 from source.pages.survey_page import EPC_Survey_Page
 from source.pages.base_page import BasePage
+from source.pages.engineering_page import Engineering_design_Page
 from source.config.config_reader import cr
 
 
@@ -15,6 +16,7 @@ class PageObjects:
         self.epc_login = EPC_Login(page)
         self.survey = EPC_Survey_Page(page)
         self.base_page = BasePage()
+        self.engg_page = Engineering_design_Page(page)
               
         
         

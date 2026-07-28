@@ -13,6 +13,7 @@ class EPC_Survey_Page:
         self.page.locator("(//i-feather[@class='icon-people'])[1]").hover()
         self.page.locator("a").filter(has_text="Project Management").click()
         self.page.get_by_role("link", name="Site Survey").click()
+        self.page.wait_for_url('**/survey-assignment')
     
     def assign_new_survey(self, project_code):
         self.page.locator("//div//small[text()=' Pending Assignment ']").hover()
