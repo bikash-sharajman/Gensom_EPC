@@ -14,6 +14,18 @@ class ConfigReader:
     load_dotenv(env_path)
 
     _config.read(config_path)
+    
+    @classmethod
+    def get_file_path(cls):
+        return cls._config.get("DEFAULT", "file_path")
+    
+    @classmethod
+    def get_email_id(cls):
+        return cls._config.get("CREDENTIALS", "email")
+
+    @classmethod
+    def get_password(cls):
+        return cls._config.get("CREDENTIALS", "password")
 
     @classmethod
     def get_browser(cls):

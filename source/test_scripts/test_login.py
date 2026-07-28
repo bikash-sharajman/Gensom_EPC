@@ -5,5 +5,5 @@ import pytest
 
 @pytest.mark.testing
 def test_epc_login(setup):
-    setup.epc_login.login(cr.email, cr.password)
+    setup.epc_login.login(cr.get_email_id, cr.get_password)
     
