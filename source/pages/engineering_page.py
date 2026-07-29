@@ -2,6 +2,8 @@ from playwright.sync_api import Page
 from datetime import date
 from source.pages.base_page import BasePage
 import pyautogui
+from source.config.config_reader import cr
+from source.locators.engineering_locators import engineering_fields
 
 
 
@@ -27,22 +29,71 @@ class Engineering_design_Page:
         
         
     def upload_plant_layout_document(self):
-        self.page.locator("//p-autocomplete[@formcontrolname='documentType']//input").type("Plant Layout")
+        document_field = self.page.locator(engineering_fields.document_uploader)
+        document_field.clear()
+        document_field.type("Plant Layout")
         self.page.get_by_text("Plant Layout").click()
         # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
         # self.page.keyboard.press("Escape")
         base_p = BasePage()
-        filepath = base_p.get_file("source/data_files/M06 Engineering Design & Layout V1.1.pdf")
+        filepath = base_p.get_file(cr.get_plant_layout_file())
         self.page.locator("input[type=\"file\"]").set_input_files(filepath)
         # pyautogui.press("esc")
         self.page.get_by_role("textbox", name="Enter description").click()
-        self.page.get_by_role("textbox", name="Enter description").fill("Survey description submit step")
+        self.page.get_by_role("textbox", name="Enter description").fill("Plant layout uploaded.")
         
+        
+    def upload_sld_document(self):
+        document_field = self.page.locator(engineering_fields.document_uploader)
+        document_field.clear()
+        document_field.type("SLD")
+        self.page.get_by_text(" Single Line Diagram (SLD) ").click()
+        # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
+        # self.page.keyboard.press("Escape")
+        base_p = BasePage()
+        filepath = base_p.get_file(cr.get_sld_file())
+        self.page.locator("input[type=\"file\"]").set_input_files(filepath)
+        # pyautogui.press("esc")
+        self.page.get_by_role("textbox", name="Enter description").click()
+        self.page.get_by_role("textbox", name="Enter description").fill("SLD file uploaded.")
+        
+        
+    def upload_structural_document(self):
+        document_field = self.page.locator(engineering_fields.document_uploader)
+        document_field.clear()
+        document_field.type("Structural")
+        self.page.get_by_text(" Structural Layout ").click()
+        # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
+        # self.page.keyboard.press("Escape")
+        base_p = BasePage()
+        filepath = base_p.get_file(cr.get_structural_file())
+        self.page.locator("input[type=\"file\"]").set_input_files(filepath)
+        # pyautogui.press("esc")
+        self.page.get_by_role("textbox", name="Enter description").click()
+        self.page.get_by_role("textbox", name="Enter description").fill("Structural file uploaded.")
+        
+    
+    def upload_foundation_document(self):
+        document_field = self.page.locator(engineering_fields.document_uploader)
+        document_field.clear()
+        document_field.type("Foundation")
+        self.page.get_by_text(" Foundation Design ").click()
+        # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
+        # self.page.keyboard.press("Escape")
+        base_p = BasePage()
+        filepath = base_p.get_file(cr.get_foundation_file())
+        self.page.locator("input[type=\"file\"]").set_input_files(filepath)
+        # pyautogui.press("esc")
+        self.page.get_by_role("textbox", name="Enter description").click()
+        self.page.get_by_role("textbox", name="Enter description").fill("Foundation file uploaded.")
         
     
     def start_new_engineering_design(self):
         self.page.get_by_role("button",name="Upload Design Document").click()
         self.upload_plant_layout_document()
+        self.upload_sld_document()
+        self.upload_structural_document()
+        self.upload_foundation_document()
         
         self.page.wait_for_timeout(50000)
         

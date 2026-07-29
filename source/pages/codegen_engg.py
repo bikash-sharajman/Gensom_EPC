@@ -70,10 +70,7 @@ def run(playwright: Playwright) -> None:
 
 with sync_playwright() as playwright:
     run(playwright)
-    
-    
-import re
-from playwright.sync_api import Playwright, sync_playwright, expect
+
 
 
 def run(playwright: Playwright) -> None:

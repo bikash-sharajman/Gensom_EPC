@@ -16,9 +16,21 @@ class ConfigReader:
     _config.read(config_path)
     
     @classmethod
-    def get_file_path(cls):
-        return cls._config.get("DEFAULT", "file_path")
+    def get_plant_layout_file(cls):
+        return cls._config.get("ENGINEERING", "plant_layout")
     
+    @classmethod
+    def get_sld_file(cls):
+        return cls._config.get("ENGINEERING", "sld")
+
+    @classmethod
+    def get_structural_file(cls):
+        return cls._config.get("ENGINEERING", "sturctural")
+
+    @classmethod
+    def get_foundation_file(cls):
+        return cls._config.get("ENGINEERING", "foundation")
+
     @classmethod
     def get_email_id(cls):
         return cls._config.get("CREDENTIALS", "email")
@@ -41,7 +53,7 @@ class ConfigReader:
 
     @classmethod
     def get_url(cls):
-        return cls._config.get("ENVIRONMENTS", "qa")
+        return cls._config.get("ENVIRONMENTS", "url")
     
 
     email: str = (os.getenv("email") or "").strip()
