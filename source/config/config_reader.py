@@ -15,6 +15,11 @@ class ConfigReader:
 
     _config.read(config_path)
     
+    
+    @classmethod
+    def get_survey_file(cls):
+        return cls._config.get("ENGINEERING", "survey")
+        
     @classmethod
     def get_plant_layout_file(cls):
         return cls._config.get("ENGINEERING", "plant_layout")

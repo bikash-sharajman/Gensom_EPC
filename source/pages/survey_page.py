@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from datetime import date
 from source.pages.base_page import BasePage
+from source.config.config_reader import cr
 
 
 
@@ -11,9 +12,10 @@ class EPC_Survey_Page:
     
     def navigate_to_survey_page(self):
         self.page.locator("(//i-feather[@class='icon-people'])[1]").hover()
-        self.page.locator("a").filter(has_text="Project Management").click()
+        self.page.locator("a").filter(has_text="Project Management ").click()
         self.page.get_by_role("link", name="Site Survey").click()
-        self.page.wait_for_url('**/survey-assignment')
+        # self.page.wait_for_url('**/survey-assignment')
+        self.page.locator("//div//small[text()=' Pending Assignment ']").hover()
     
     def assign_new_survey(self, project_code):
         self.page.locator("//div//small[text()=' Pending Assignment ']").hover()
@@ -63,10 +65,10 @@ class EPC_Survey_Page:
         self.page.get_by_role("dialog", name="Upload Document").locator("input[name=\"undefined\"]").click()
         self.page.get_by_role("dialog", name="Upload Document").locator("input[name=\"undefined\"]").fill("survey")
         self.page.get_by_text("Site Survey Report").click()
-        self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
+        # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
         self.page.wait_for_timeout(000)
         base_p = BasePage()
-        filepath = base_p.get_file("source/data_files/M06 Engineering Design & Layout V1.1.pdf")
+        filepath = base_p.get_file(cr.get_survey_file())
         self.page.locator("input[type=\"file\"]").set_input_files(filepath)
         self.page.get_by_role("textbox", name="Enter description").click()
         self.page.get_by_role("textbox", name="Enter description").fill("Survey description")
@@ -93,11 +95,11 @@ class EPC_Survey_Page:
         self.page.get_by_role("textbox", name="Total Usable Roof Area (sq.ft").click()
         self.page.get_by_role("textbox", name="Total Usable Roof Area (sq.ft").fill("150")
         self.page.locator("//p-select[@formcontrolname='roof_orientation']//div").click()
-        self.page.get_by_text("South", exact=True).click()
+        self.page.get_by_text("East", exact=True).click()
         self.page.locator("//p-select[@formcontrolname='shading_condition']//div").click()
         self.page.get_by_text("Partial Shading").click()
-        self.page.get_by_role("textbox", name="Recommended Capacity (kW)").click()
-        self.page.get_by_role("textbox", name="Recommended Capacity (kW)").fill("50")
+        self.page.get_by_role("textbox", name=" Recommended Capacity (kWp / MWp) ").click()
+        self.page.get_by_role("textbox", name=" Recommended Capacity (kWp / MWp) ").fill("50")
         self.page.locator("//p-select[@formcontrolname='phase']//div").click()
         self.page.get_by_text("Three Phase").click()
         self.page.locator("//p-select[@formcontrolname='meter_type']//div").click()
@@ -110,10 +112,10 @@ class EPC_Survey_Page:
         self.page.get_by_role("dialog", name="Upload Document").locator("input[name=\"undefined\"]").click()
         self.page.get_by_role("dialog", name="Upload Document").locator("input[name=\"undefined\"]").fill("survey")
         self.page.get_by_text("Site Survey Report").click()
-        self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
+        # self.page.locator(".pi.pi-cloud-upload.upload-icon").click()
         self.page.wait_for_timeout(000)
         base_p = BasePage()
-        filepath = base_p.get_file("source/data_files/M06 Engineering Design & Layout V1.1.pdf")
+        filepath = base_p.get_file(cr.get_survey_file())
         self.page.locator("input[type=\"file\"]").set_input_files(filepath)
         self.page.get_by_role("textbox", name="Enter description").click()
         self.page.get_by_role("textbox", name="Enter description").fill("Survey description submit step")

@@ -22,10 +22,10 @@ class BrowserFactory:
                 f"Unsupported Browser : {browser_name}")
 
         browser = browser_map[browser_name].launch(
-            headless=headless_mode,
+            headless=headless_mode, args=["--start-maximized"],
             slow_mo=cr.get_slow_mo())
 
-        context = browser.new_context(ignore_https_errors=True)
+        context = browser.new_context(ignore_https_errors=True, no_viewport=True)
         page = context.new_page()
         return browser, context, page
 
