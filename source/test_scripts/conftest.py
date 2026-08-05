@@ -6,6 +6,7 @@ from source.pages.login_page import EPC_Login
 from source.pages.survey_page import EPC_Survey_Page
 from source.pages.base_page import BasePage
 from source.pages.engineering_page import Engineering_design_Page
+from source.pages.token_receipt_page import Token_Receipt_Page
 from source.config.config_reader import cr
 
 
@@ -17,6 +18,7 @@ class PageObjects:
         self.survey = EPC_Survey_Page(page)
         self.base_page = BasePage()
         self.engg_page = Engineering_design_Page(page)
+        self.token_page = Token_Receipt_Page(page)
               
         
         

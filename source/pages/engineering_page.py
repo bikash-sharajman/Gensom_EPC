@@ -21,17 +21,14 @@ class Engineering_design_Page:
         self.page.locator("//div//small[text()=' Draft ']").hover()
         
     def click_on_start_design_of_project(self, project_code):
-        self.page.locator("//div//small[text()=' Draft ']").hover()
-        # self.page.get_by_role("textbox", name="Search").click()
         self.page.get_by_role("textbox", name="Search").fill(project_code)
         self.page.get_by_role("textbox", name="Search").press("Enter")
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(1000)
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
         self.page.locator("a").filter(has_text="Start Design").click()
         
     def click_on_submit_for_final_approval_button(self, project_code):
-        # self.page.get_by_role("textbox", name="Search").click()
         self.page.get_by_role("textbox", name="Search").fill(project_code)
         self.page.get_by_role("textbox", name="Search").press("Enter")
         # self.page.wait_for_timeout(2000)

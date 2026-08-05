@@ -18,23 +18,27 @@ class ConfigReader:
     
     @classmethod
     def get_survey_file(cls):
-        return cls._config.get("ENGINEERING", "survey")
+        return cls._config.get("EPC_FILES", "survey")
         
     @classmethod
     def get_plant_layout_file(cls):
-        return cls._config.get("ENGINEERING", "plant_layout")
+        return cls._config.get("EPC_FILES", "engg.plant_layout")
     
     @classmethod
     def get_sld_file(cls):
-        return cls._config.get("ENGINEERING", "sld")
+        return cls._config.get("EPC_FILES", "engg.sld  ")
 
     @classmethod
     def get_structural_file(cls):
-        return cls._config.get("ENGINEERING", "sturctural")
+        return cls._config.get("EPC_FILES", "engg.sturctural")
 
     @classmethod
     def get_foundation_file(cls):
-        return cls._config.get("ENGINEERING", "foundation")
+        return cls._config.get("EPC_FILES", "engg.foundation")
+    
+    @classmethod
+    def get_token_file(cls):
+        return cls._config.get("EPC_FILES", "token")
 
     @classmethod
     def get_email_id(cls):
