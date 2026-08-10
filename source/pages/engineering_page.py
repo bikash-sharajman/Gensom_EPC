@@ -1,7 +1,5 @@
 from playwright.sync_api import Page
-from datetime import date
 from source.pages.base_page import BasePage
-import pyautogui
 from source.config.config_reader import cr
 from source.locators.engineering_locators import engineering_fields
 
@@ -24,7 +22,6 @@ class Engineering_design_Page:
         self.page.get_by_role("textbox", name="Search").fill(project_code)
         self.page.get_by_role("textbox", name="Search").press("Enter")
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
-        self.page.wait_for_timeout(1000)
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
         self.page.locator("a").filter(has_text="Start Design").click()
         
@@ -33,9 +30,18 @@ class Engineering_design_Page:
         self.page.get_by_role("textbox", name="Search").press("Enter")
         # self.page.wait_for_timeout(2000)
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
-        self.page.wait_for_timeout(2000)
+        # self.page.wait_for_timeout(2000)
         self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
-        self.page.locator("a").filter(has_text="Submit for Approval").click()       
+        self.page.locator("a").filter(has_text="Submit for Approval").click()
+        
+    def click_on_upload_category_items_button(self, project_code):
+        self.page.get_by_role("textbox", name="Search").fill(project_code)
+        self.page.get_by_role("textbox", name="Search").press("Enter")
+        # self.page.wait_for_timeout(2000)
+        self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
+        # self.page.wait_for_timeout(2000)
+        self.page.locator("(//p-button[@icon='pi pi-ellipsis-v']//button)[1]").click()
+        self.page.locator("a").filter(has_text="Upload Category Items").click()      
         
     def upload_plant_layout_document(self):
         document_field = self.page.locator(engineering_fields.document_uploader)
@@ -114,9 +120,9 @@ class Engineering_design_Page:
         
         
         
-    def submit_for_final_approval(self, p_code):
+    def submit_for_final_approval(self, project_code):
         self.page.wait_for_timeout(2000)
-        self.click_on_submit_for_final_approval_button(p_code)
+        self.click_on_submit_for_final_approval_button(project_code)
         self.page.locator("[id='remarks_0']").fill("done")
         self.page.locator("[id='remarks_1']").fill("done")
         self.page.locator("[id='remarks_2']").fill("done")
@@ -124,16 +130,16 @@ class Engineering_design_Page:
         self.page.get_by_role("textbox", name="Approver Comments").fill("approved")
         self.page.get_by_role("button", name="Approve").click()
         
-        self.page.wait_for_timeout(50000)
         
-        
-
-        
-        
-        
+    def upload_drawing_item_lists(self, project_code):
+        self.click_on_upload_category_items_button(project_code)
+        self.page.get_by_role("button", name="Click to Upload").click()
+        base_p = BasePage()
+        filepath = base_p.get_file(cr.get_engg_item_list())
+        self.page.locator("input[type=\"file\"]").set_input_files(filepath)
+        self.page.get_by_role("button", name="Save").click()
+        self.page.get_by_role("button", name="OK").click()
+        self.page.get_by_role("button", name="Submit Report").click()
         
     
-        
-        
-        
-        
+                

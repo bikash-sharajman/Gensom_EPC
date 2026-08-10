@@ -26,11 +26,11 @@ class ConfigReader:
     
     @classmethod
     def get_sld_file(cls):
-        return cls._config.get("EPC_FILES", "engg.sld  ")
+        return cls._config.get("EPC_FILES", "engg.sld")
 
     @classmethod
     def get_structural_file(cls):
-        return cls._config.get("EPC_FILES", "engg.sturctural")
+        return cls._config.get("EPC_FILES", "engg.structural")
 
     @classmethod
     def get_foundation_file(cls):
@@ -39,6 +39,10 @@ class ConfigReader:
     @classmethod
     def get_token_file(cls):
         return cls._config.get("EPC_FILES", "token")
+    
+    @classmethod
+    def get_engg_item_list(cls):
+        return cls._config.get("EPC_FILES", "engg.upload_items")
 
     @classmethod
     def get_email_id(cls):

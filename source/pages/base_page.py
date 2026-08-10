@@ -14,7 +14,11 @@ class BasePage:
         return file_path
     
     @staticmethod
-    def get_expected_complition_date(date):
-        pass
+    def select_current_date(self):
+        curr_date = date.today().strftime("%d")
+        self.page.locator(f"(//tbody//td//span[text()='{curr_date}'])[1]").click()
+        
+
+base_page = BasePage()
     
         

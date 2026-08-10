@@ -1,7 +1,8 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from datetime import date
 from source.pages.base_page import BasePage
 from source.config.config_reader import cr
+from source.locators.survey_locators import survey_elements
 
 
 
@@ -28,8 +29,8 @@ class EPC_Survey_Page:
         self.page.locator("//p-datepicker[@formcontrolname='request_date']//input").click()
         today = date.today()
         formatted_date = today.strftime("%d-%m-%Y")
-        self.page.locator("//p-datepicker[@formcontrolname='request_date']//input").type(formatted_date)
-        self.page.locator("//p-datepicker[@formcontrolname='request_date']//input").press("Enter")
+        self.page.locator(survey_elements.request_date).type(formatted_date)
+        self.page.locator(survey_elements.request_date).press("Enter")
         self.page.get_by_role("textbox", name="Site Address ").click()
         self.page.get_by_role("textbox", name="Site Address ").fill("DEMO ADDRESS")
         self.page.get_by_role("textbox", name="GPS Coordinates (Latitude) ").click()
