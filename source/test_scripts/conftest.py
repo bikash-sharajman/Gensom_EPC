@@ -8,6 +8,7 @@ from source.pages.base_page import BasePage
 from source.pages.engineering_page import Engineering_design_Page
 from source.pages.token_receipt_page import Token_Receipt_Page
 from source.pages.boq_page import BOQ_Page
+from source.pages.vendor_management import Vendor_Management
 from source.config.config_reader import cr
 
 
@@ -21,6 +22,7 @@ class PageObjects:
         self.engg_page = Engineering_design_Page(page)
         self.token_page = Token_Receipt_Page(page)
         self.boq_page = BOQ_Page(page)
+        self.vendor = Vendor_Management(page)
               
         
         

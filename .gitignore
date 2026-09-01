@@ -6,3 +6,5 @@ source/testing
 test_flows
 source/pages/codegen_page.py
 /api
+.github
+.vscode
