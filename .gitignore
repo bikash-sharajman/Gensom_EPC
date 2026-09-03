@@ -8,3 +8,4 @@ source/pages/codegen_page.py
 /api
 .github
 .vscode
+*.pyc
